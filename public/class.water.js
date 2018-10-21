@@ -4,6 +4,7 @@ class water {
         this.y = y;
         this.multiply = 0;
         this.index = index;
+        this.coordinates = 0;
     }
     getNewCoordinates() {
         this.directions = [
@@ -24,8 +25,19 @@ class water {
         }
         return found;
     }
+    die() {
+        this.getNewCoordinates();
+        matrix[this.y][this.x] = 0;
+
+        for (var i in waterArr) {
+            if (this.x == waterArr[i].x && this.y == waterArr[i].y) {
+                waterArr.splice(i, 1);
+            }
+        }
+    }
     //this.x - 39, this.y;
     mul() {
+        this.coordinates++;
         this.multiply++;
         var newCell = random(this.chooseCell(0, 1, 2, 3));
         if (this.multiply >= 1 && newCell) {
@@ -33,6 +45,9 @@ class water {
             waterArr.push(NewWater);
             matrix[newCell[1]][newCell[0]] = 6;
             this.multiply = 0;
+        }
+        if (this.coordinates == 39) {
+            this.die();
         }
     }
 }

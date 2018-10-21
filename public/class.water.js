@@ -46,8 +46,9 @@ class water {
             matrix[newCell[1]][newCell[0]] = 6;
             this.multiply = 0;
         }
-        if (this.coordinates == 39) {
-            this.die();
+        if (waterArr.length >= n - 1) {
+            waterArr = [];
+            for (var i in matrix[4]) matrix[4][i] = 0;
         }
     }
 }

@@ -26,16 +26,14 @@ class water {
         return found;
     }
     die() {
-        this.getNewCoordinates();
-        matrix[this.y][this.x] = 0;
+        waterArr = [];
 
-        for (var i in waterArr) {
-            if (this.x == waterArr[i].x && this.y == waterArr[i].y) {
-                waterArr.splice(i, 1);
-            }
-        }
+        for (var i in matrix[4]) { matrix[4][i] = 0; }
+
+        matrix[4][n - 1] = 6;
+        waterArr.push(new water(n - 1, 4, 6));
     }
-    //this.x - 39, this.y;
+
     mul() {
         this.coordinates++;
         this.multiply++;
@@ -46,9 +44,6 @@ class water {
             matrix[newCell[1]][newCell[0]] = 6;
             this.multiply = 0;
         }
-        if (waterArr.length >= n - 1) {
-            waterArr = [];
-            for (var i in matrix[4]) matrix[4][i] = 0;
-        }
+
     }
 }

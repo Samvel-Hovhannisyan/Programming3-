@@ -1,5 +1,5 @@
 module.exports = class Parent {
-    constructor(x, y, index) {
+    constructor(x, y, index, matrix) {
         this.x = x;
         this.y = y;
         this.index = index;

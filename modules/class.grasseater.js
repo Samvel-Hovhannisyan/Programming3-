@@ -1,14 +1,15 @@
-module.exports = class GrassEater extends parent{
-    constructor(x, y, index) {
+var Parent = require("./class.parent.js");
+module.exports = class GrassEater extends Parent{
+    constructor(x, y, index, matrix) {
         this.energy = 8;
         this.m = 0;
-        super(x, y, index);
+        super(x, y, index, matrix);
     }
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character);
     }
-    move() {
+    move(grassEaterArr) {
         var fundCords = this.chooseCell(0);
         var cord = random(fundCords);
 
@@ -23,7 +24,7 @@ module.exports = class GrassEater extends parent{
             this.y = y;
         }
         if (this.energy < 1) {
-            this.die();
+            this.die(grassEaterArr);
         }
     }
     die(grassEaterArr) {

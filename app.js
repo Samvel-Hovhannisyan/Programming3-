@@ -2,21 +2,19 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
+var Grass = require("./modules/class.grass.js");
+var GrassEater = require("./modules/class.grasseater.js");
+var XotakerEater = require("./modules/class.xotakereater.js");
+var Cool = require("./modules/class.cool.js");
+var Tornado = require("./modules/class.tornado.js");
+var Water = require("./modules/class.water.js");
+
 var grassArr = [];
 var grassEaterArr = [];
 var xotakerEaterArr = [];
 var coolArr = [];
 var tornadoArr = [];
 var waterArr = [];
-
-var Parent = require("./modules/class.parent.js");
-
-var Grass = require("./modules/class.grass.js");
-var GrassEater = require("./modules/class.grasseater.js");
-var XotakerEater = require("./modules/class.xotakereater.js");
-var Cool = require("./modules/class.cool.js");
-var Tornado = require("./modules/class.tornado.js");
-var Water = require("./modules/class.water.js")
 
 var matrix = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -64,45 +62,45 @@ var matrix = [
 for (var y = 0; y < matrix.length; y++) {
   for (var x = 0; x < matrix[y].length; x++) {
     if (matrix[y][x] == 1) {
-      grassArr.push(new Grass(x, y, 1));
+      grassArr.push(new Grass(x, y, 1, matrix));
     }
     else if (matrix[y][x] == 2) {
-      grassEaterArr.push(new GrassEater(x, y, 2));
+      grassEaterArr.push(new GrassEater(x, y, 2, matrix));
     }
     else if (matrix[y][x] == 3) {
-      xotakerEaterArr.push(new XotakerEater(x, y, 3));
+      xotakerEaterArr.push(new XotakerEater(x, y, 3, matrix));
     }
     else if (matrix[y][x] == 4) {
-      coolArr.push(new Cool(x, y, 4));
+      coolArr.push(new Cool(x, y, 4, matrix));
     }
     else if (matrix[y][x] == 5) {
-      tornadoArr.push(new Tornado(x, y, 5));
+      tornadoArr.push(new Tornado(x, y, 5, matrix));
     }
     else if (matrix[y][x] == 6) {
-      waterArr.push(new Water(x, y, 6));
+      waterArr.push(new Water(x, y, 6, matrix));
     }
   }
 }
 
 for (var i in grassArr) {
-  grassArr[i].mul();
+  grassArr[i].mul(grassArr);
 }
 for (var i in grassEaterArr) {
-  grassEaterArr[i].eat();
+  grassEaterArr[i].eat(grassEaterArr, grassArr);
 }
 for (var i in xotakerEaterArr) {
-  xotakerEaterArr[i].eat();
+  xotakerEaterArr[i].eat(xotakerEaterArr, grassEaterArr);
 }
 for (var i in coolArr) {
-  coolArr[i].eat();
+  coolArr[i].eat(xotakerEaterArr);
 }
 for (var i in tornadoArr) {
-  tornadoArr[i].eat();
+  tornadoArr[i].eat(tornadoArr, grassArr, grassEaterArr);
 }
 for (var i in waterArr) {
-  waterArr[i].mul();
+  waterArr[i].mul(waterArr);
   if (waterArr.length >= n) {
-    waterArr[i].die();
+    waterArr[i].die(waterArr);
     break;
   }
 }

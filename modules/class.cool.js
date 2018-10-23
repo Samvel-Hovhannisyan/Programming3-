@@ -1,5 +1,6 @@
 class Cool {
-    constructor(x, y, index) {
+    constructor(x, y, index, matrix) {
+        this.matrix = matrix
         this.x = x;
         this.y = y;
         this.energy = 6;
@@ -50,7 +51,7 @@ class Cool {
         return found;
     }
 
-    eat(coolArr, xotakerEaterArr) {
+    eat(xotakerEaterArr) {
         var emptyCellsx = this.chooseCell(3);
         var a = [];
         for (var i = 0; i < emptyCellsx.length; i++) {

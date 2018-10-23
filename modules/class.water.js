@@ -1,5 +1,6 @@
 class Water {
-    constructor(x, y, index) {
+    constructor(x, y, index, matrix) {
+        this.matrix;
         this.x = x;
         this.y = y;
         this.multiply = 0;

@@ -1,5 +1,6 @@
 class Tornado {
-    constructor(x, y, index) {
+    constructor(x, y, index, matrix) {
+        this.matrix = matrix;
         this.x = x;
         this.y = y;
         this.multiply = 0;
@@ -28,7 +29,7 @@ class Tornado {
         }
         return found;
     }
-    move(tornadoArr) {
+    move() {
         var fundCords = this.chooseCell(0, 1, 2, 3);
         var cord = random(fundCords);
 

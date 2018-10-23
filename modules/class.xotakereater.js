@@ -1,13 +1,14 @@
-class XotakerEater {
-    constructor(x, y, index) {
+var Parent = require("./class.parent.js");
+module.exports = class XotakerEater extends Parent{
+    constructor(x, y, index, matrix) {
         this.energy = 150;
-        super(x, y, index);
+        super(x, y, index, matrix);
     }
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character);
     }
-    move() {
+    move(xotakerEaterArr) {
         var fundCords = this.chooseCell(0, 1);
         var cord = random(fundCords);
 
@@ -27,7 +28,7 @@ class XotakerEater {
             this.y = y;
         }
         if (this.energy < 1) {
-            this.die();
+            this.die(xotakerEaterArr);
         }
     }
 
@@ -42,7 +43,7 @@ class XotakerEater {
         }
     }
 
-    eat() {
+    eat(xotakerEaterArr, grassEaterArr) {
         var fundCords = this.chooseCell(2);
         var cord = random(fundCords);
 
@@ -65,19 +66,19 @@ class XotakerEater {
             this.energy++;
 
             if (this.multiply == 10) {
-                this.mul()
+                this.mul(xotakerEaterArr)
                 this.multiply = 0;
             }
         }
         else {
-            this.move();
+            this.move(xotakerEaterArr);
             this.energy--;
             if (this.energy < 1) {
-                this.die();
+                this.die(xotakerEaterArr);
             }
         }
     }
-    mul() {
+    mul(xotakerEaterArr) {
         var emptyCells = this.chooseCell(1);
         var newCell = random(emptyCells);
         if (newCell) {

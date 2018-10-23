@@ -1,4 +1,4 @@
-class tornado {
+class Tornado {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
@@ -28,7 +28,7 @@ class tornado {
         }
         return found;
     }
-    move() {
+    move(tornadoArr) {
         var fundCords = this.chooseCell(0, 1, 2, 3);
         var cord = random(fundCords);
 
@@ -56,7 +56,7 @@ class tornado {
         }
     }
 
-    eat() {
+    eat(tornadoArr, grassArr, grassEaterArr) {
         var fundCords = this.chooseCell(1, 2, 3);
         var cord = random(fundCords);
 
@@ -97,7 +97,7 @@ class tornado {
             }
         }
         else {
-            this.move();
+            this.move(tornadoArr);
         }
     }
 }

@@ -1,4 +1,4 @@
-class water {
+class Water {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
@@ -25,21 +25,21 @@ class water {
         }
         return found;
     }
-    die() {
+    die(waterArr) {
         waterArr = [];
 
         for (var i in matrix[4]) { matrix[4][i] = 0; }
 
         matrix[4][n - 1] = 6;
-        waterArr.push(new water(n - 1, 4, 6));
+        waterArr.push(new Water(n - 1, 4, 6));
     }
 
-    mul() {
+    mul(waterArr) {
         this.coordinates++;
         this.multiply++;
         var newCell = random(this.chooseCell(0, 1, 2, 3));
         if (this.multiply >= 1 && newCell) {
-            var NewWater = new water(newCell[0], newCell[1], this.index);
+            var NewWater = new Water(newCell[0], newCell[1], this.index);
             waterArr.push(NewWater);
             matrix[newCell[1]][newCell[0]] = 6;
             this.multiply = 0;

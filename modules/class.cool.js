@@ -50,7 +50,7 @@ class Cool {
         return found;
     }
 
-    eat() {
+    eat(coolArr, xotakerEaterArr) {
         var emptyCellsx = this.chooseCell(3);
         var a = [];
         for (var i = 0; i < emptyCellsx.length; i++) {

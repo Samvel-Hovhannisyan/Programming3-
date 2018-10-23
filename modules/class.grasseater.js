@@ -1,37 +1,12 @@
-class GrassEater {
+module.exports = class GrassEater extends parent{
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.multiply = 0;
         this.energy = 8;
-        this.index = index;
         this.m = 0;
-    }
-    getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super(x, y, index);
     }
     chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(character);
     }
     move() {
         var fundCords = this.chooseCell(0);
@@ -51,7 +26,7 @@ class GrassEater {
             this.die();
         }
     }
-    die() {
+    die(grassEaterArr) {
         this.getNewCoordinates();
         matrix[this.y][this.x] = 0;
 
@@ -61,7 +36,7 @@ class GrassEater {
             }
         }
     }
-    eat() {
+    eat(grassEaterArr, grassArr) {
         var fundCords = this.chooseCell(1);
         var cord = random(fundCords);
 
@@ -86,20 +61,20 @@ class GrassEater {
             this.energy++;
 
             if (this.multiply == 7) {
-                this.mul()
+                this.mul(grassEaterArr)
                 this.multiply = 0;
             }
             if (this.energy < 5) {
-                this.die();
+                this.die(grassEaterArr);
             }
         }
         else {
-            this.move();
+            this.move(grassEaterArr);
             this.energy--;
 
         }
     }
-    mul() {
+    mul(grassEaterArr) {
         var emptyCells = this.chooseCell(1);
         var newCell = random(emptyCells);
         if (newCell) {

@@ -1,5 +1,5 @@
 module.exports = class Parent {
-    constructor(x, y, index, matrix) {
+    constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.index = index;
@@ -12,7 +12,7 @@ module.exports = class Parent {
             [this.x + 1, this.y],
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
-            [this.x + 1, this.y + 1],
+            [this.x + 1, this.y + 1]
         ];
     }
     getNewCoordinates() {
@@ -27,7 +27,7 @@ module.exports = class Parent {
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(character) {
+    chooseCell(character, matrix) {
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
@@ -37,7 +37,12 @@ module.exports = class Parent {
                     found.push(this.directions[i]);
                 }
             }
+
         }
         return found;
+    }
+    random(Arr){
+        var Item = Arr[Math.floor(Math.random() * Arr.length)];
+        return Item;
     }
 }

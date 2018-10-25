@@ -1,5 +1,5 @@
 {
-  "name": "Programming3-",
+  "name": "programming3-",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -18,9 +18,11 @@
   },
   "homepage": "https://SH-programming3.herokuapp.com/",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "socket.io": "^2.1.1"
   },
   "engines": {
     "node": "4.7.2"
-  }
+  },
+  "devDependencies": {}
 }

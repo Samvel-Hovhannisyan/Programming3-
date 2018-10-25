@@ -1,12 +1,17 @@
-class Cool {
-    constructor(x, y, index, matrix) {
-        this.matrix = matrix
+module.exports = class Cool {
+    constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.energy = 6;
         this.hincel = 0;
         this.index = index;
     }
+
+    random(Arr){
+        var Item = Arr[Math.floor(Math.random() * Arr.length)];
+        return Item;
+    }
+
     getNewCoordinates() {
         this.direction = [
             [this.x - 1, this.y - 1],
@@ -36,7 +41,7 @@ class Cool {
         ];
     }
 
-    chooseCell(character) {
+    chooseCell(character, matrix) {
         this.getNewCoordinates();
         var found = [];
         for (var i in this.direction) {
@@ -51,13 +56,13 @@ class Cool {
         return found;
     }
 
-    eat(xotakerEaterArr) {
-        var emptyCellsx = this.chooseCell(3);
+    eat(xotakerEaterArr, matrix) {
+        var emptyCellsx = this.chooseCell(3, matrix);
         var a = [];
         for (var i = 0; i < emptyCellsx.length; i++) {
             a.push(emptyCellsx[i]);
         }
-        var newCellxy = random(a);
+        var newCellxy = this.random(a);
         if (newCellxy) {
             this.energy += 8;
             var newX = newCellxy[0];

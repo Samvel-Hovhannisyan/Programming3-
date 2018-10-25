@@ -1,6 +1,5 @@
-class Tornado {
-    constructor(x, y, index, matrix) {
-        this.matrix = matrix;
+module.exports = class Tornado {
+    constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.multiply = 0;
@@ -15,7 +14,7 @@ class Tornado {
         ];
     }
 
-    chooseCell(character1, character2, character3, character4) {
+    chooseCell(character1, character2, character3, character4, matrix) {
         this.getNewCoordinates();
         var found = [];
         for (var i in this.directions) {
@@ -29,9 +28,15 @@ class Tornado {
         }
         return found;
     }
-    move() {
-        var fundCords = this.chooseCell(0, 1, 2, 3);
-        var cord = random(fundCords);
+
+    random(Arr) {
+        var Item = Arr[Math.floor(Math.random() * Arr.length)];
+        return Item;
+    }
+
+    move(matrix) {
+        var fundCords = this.chooseCell(0, 1, 2, 3, matrix);
+        var cord = this.random(fundCords);
 
         if (cord) {
             var x = cord[0];
@@ -57,9 +62,9 @@ class Tornado {
         }
     }
 
-    eat(tornadoArr, grassArr, grassEaterArr) {
-        var fundCords = this.chooseCell(1, 2, 3);
-        var cord = random(fundCords);
+    eat(tornadoArr, grassArr, grassEaterArr, matrix) {
+        var fundCords = this.chooseCell(4, 1, 2, 3, matrix);
+        var cord = this.random(fundCords);
 
         if (cord) {
             var x = cord[0];
@@ -98,7 +103,7 @@ class Tornado {
             }
         }
         else {
-            this.move(tornadoArr);
+            this.move(tornadoArr, matrix);
         }
     }
 }

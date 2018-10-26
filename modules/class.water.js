@@ -25,13 +25,14 @@ module.exports = class Water {
         return found;
     }
 
-    random(Arr){
+    random(Arr) {
         var Item = Arr[Math.floor(Math.random() * Arr.length)];
         return Item;
     }
 
     die(waterArr, matrix) {
         waterArr = [];
+        var n = matrix.length;
 
         for (var i in matrix[4]) { matrix[4][i] = 0; }
 

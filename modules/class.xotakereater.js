@@ -80,7 +80,7 @@ module.exports = class XotakerEater extends Parent {
     }
     mul(xotakerEaterArr, matrix) {
         var emptyCells = this.chooseCell(1, matrix);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];

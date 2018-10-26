@@ -62,7 +62,7 @@ module.exports = class Tornado {
         }
     }
 
-    eat(tornadoArr, grassArr, grassEaterArr, matrix) {
+    eat(tornadoArr, grassArr, grassEaterArr, xotakerEaterArr, matrix) {
         var fundCords = this.chooseCell(4, 1, 2, 3, matrix);
         var cord = this.random(fundCords);
 

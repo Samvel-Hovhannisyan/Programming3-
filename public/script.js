@@ -3,22 +3,22 @@ var socket;
 var side = 10;
 
 function setup() {
-
-    frameRate(10);
-    socket = io.connect();
-
-    socket.on("receive matrix", function (mtx) {
+    frameRate(0);
+    var socket = io.connect();
+    socket.on("get matrix", function (mtx) {
         matrix = mtx;
-        console.log(matrix);
+        // console.log(matrix + "")
         createCanvas(matrix[0].length * side, matrix.length * side);
         noLoop();
 
         socket.on("redraw", function (mtx) {
             matrix = mtx;
             redraw();
-        });
+        })
     });
+
     background('#acacac');
+
 }
 
 function draw() {

@@ -72,10 +72,10 @@ for (var y = 0; y < matrix.length; y++) {
 
 grassLifeArr[0] += grassArr.length;
 grassEaterLifeArr[0] += grassEaterArr.length;
-xotakerEaterLifeArr[0] += xotakerEaterLifeArr.length;
-tornadoLifeArr[0] += tornadoLifeArr.length;
-coolLifeArr[0] += coolLifeArr.length;
-waterLifeArr[0] += waterLifeArr.length;
+xotakerEaterLifeArr[0] += xotakerEaterArr.length;
+tornadoLifeArr[0] += tornadoArr.length;
+coolLifeArr[0] += coolArr.length;
+waterLifeArr[0] += waterArr.length;
 
 ////////////////////////////////////////////////////////
 
@@ -117,7 +117,7 @@ io.on("connection", function (socket) {
       tornadoArr[i].eat(tornadoArr, grassArr, grassEaterArr, xotakerEaterArr, matrix, grassLifeArr, grassEaterLifeArr, xotakerEaterLifeArr);
     }
     for (var i in waterArr) {
-      waterArr[i].mul(waterArr, matrix);
+      waterArr[i].mul(waterArr, matrix, waterLifeArr);
       if (waterArr.length >= n) {
         waterArr[i].die(waterArr, matrix, waterLifeArr);
         break;

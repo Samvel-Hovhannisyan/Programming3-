@@ -34,20 +34,22 @@ module.exports = class Water {
         waterArr.length = 0;
         var n = matrix.length;
 
-        for (var i in matrix[4]) { matrix[4][i] = 0; }
+        for (var i in matrix[4]) { matrix[4][i] = 0; waterLifeArr[1]++; }
 
         matrix[4][n - 1] = 6;
         waterArr.push(new Water(n - 1, 4, 6));
 
-        waterLifeArr[1]++;
+
     }
 
-    mul(waterArr, matrix) {
+    mul(waterArr, matrix, waterLifeArr) {
         var newCell = this.random(this.chooseCell(0, 1, 2, 3, matrix));
         if (newCell) {
             var NewWater = new Water(newCell[0], newCell[1], this.index);
             waterArr.push(NewWater);
             matrix[newCell[1]][newCell[0]] = 6;
+
+            waterLifeArr[0]++;
         }
     }
 }

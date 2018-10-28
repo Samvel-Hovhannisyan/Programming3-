@@ -2,25 +2,55 @@ var matrix;
 var socket;
 var side = 10;
 
+var stat;
+
 function setup() {
     frameRate(0);
     var socket = io.connect();
     socket.on("get matrix", function (mtx) {
         matrix = mtx;
-        createCanvas(matrix[0].length * side, matrix.length * side);
+        createCanvas(matrix[0].length * side + 500, matrix.length * side);
         noLoop();
 
         socket.on("redraw", function (mtx) {
             matrix = mtx;
             redraw();
         })
+
+        socket.on("Right Statistics", function(Statistics){
+            stat = Statistics;
+        })
     });
 
     background('#acacac');
 
 }
+var start = false;
 
 function draw() {
+    background('#acacac');
+    var margin = 60;
+    var N = 0;
+    var Nx = 420;
+    for(var i in stat){
+        textSize(15);
+        start = true;
+
+        N++;
+        if(N != 2 && N!= 3){
+            text(i + ":" + stat[i], Nx, margin);
+        }
+        else{
+            fill(50);
+            text(stat[i], Nx, margin);
+        }
+        Nx += 200;
+        if (N == 3) {
+            Nx = 420
+            N = 0
+            margin += 40;
+        }
+    }
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -54,4 +84,9 @@ function draw() {
             }
         }
     }
+
+
+    fill("black")
+    textSize(20)
+    text("Game of life", 600, 30)
 }

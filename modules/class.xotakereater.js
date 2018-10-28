@@ -96,7 +96,7 @@ module.exports = class XotakerEater {
             this.energy++;
 
             if (this.multiply == 10) {
-                this.mul(xotakerEaterArr, matrix)
+                this.mul(xotakerEaterArr, matrix, xotakerEaterLifeArr)
                 this.multiply = 0;
             }
         }
@@ -108,7 +108,7 @@ module.exports = class XotakerEater {
             }
         }
     }
-    mul(xotakerEaterArr, matrix) {
+    mul(xotakerEaterArr, matrix, xotakerEaterLifeArr) {
         var emptyCells = this.chooseCell(0, 1, matrix);
         var newCell = this.random(emptyCells);
         if (newCell) {
@@ -117,6 +117,8 @@ module.exports = class XotakerEater {
             matrix[newY][newX] = this.index;
             var Newxotakereat = new XotakerEater(newX, newY, this.index);
             xotakerEaterArr.push(Newxotakereat);
+
+            xotakerEaterLifeArr[0]++;
         }
     }
 }

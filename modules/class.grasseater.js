@@ -1,5 +1,5 @@
 var Parent = require("./class.parent.js");
-module.exports = class GrassEater extends Parent{
+module.exports = class GrassEater extends Parent {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 8;
@@ -8,13 +8,13 @@ module.exports = class GrassEater extends Parent{
         this.getNewCoordinates();
         return super.chooseCell(character, matrix);
     }
-    move(grassEaterArr, matrix) {
+    move(grassEaterArr, matrix, grassEaterLifeArr) {
         var fundCords = this.chooseCell(0, matrix);
         var cord = this.random(fundCords);
 
         if (cord) {
             var x = cord[0];
-            var y = cord[1] ;
+            var y = cord[1];
 
             matrix[y][x] = 2;
             matrix[this.y][this.x] = 0;
@@ -23,20 +23,21 @@ module.exports = class GrassEater extends Parent{
             this.y = y;
         }
         if (this.energy < 1) {
-            this.die(grassEaterArr, matrix);
+            this.die(grassEaterArr, matrix, grassEaterLifeArr);
         }
     }
-    die(grassEaterArr, matrix) {
+    die(grassEaterArr, matrix, grassEaterLifeArr) {
         this.getNewCoordinates();
         matrix[this.y][this.x] = 0;
 
         for (var i in grassEaterArr) {
             if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
                 grassEaterArr.splice(i, 1);
+                grassEaterLifeArr[1]++;
             }
         }
     }
-    eat(grassEaterArr, grassArr, matrix) {
+    eat(grassEaterArr, grassArr, matrix, grassLifeArr, grassEaterLifeArr) {
         var fundCords = this.chooseCell(1, matrix);
         var cord = this.random(fundCords);
 
@@ -50,6 +51,8 @@ module.exports = class GrassEater extends Parent{
             for (var i in grassArr) {
                 if (x == grassArr[i].x && y == grassArr[i].y) {
                     grassArr.splice(i, 1);
+
+                    grassLifeArr[1]++;
                 }
             }
             this.x = x;
@@ -64,11 +67,11 @@ module.exports = class GrassEater extends Parent{
                 this.multiply = 0;
             }
             if (this.energy < 5) {
-                this.die(grassEaterArr, matrix);
+                this.die(grassEaterArr, matrix, grassEaterLifeArr);
             }
         }
         else {
-            this.move(grassEaterArr, matrix);
+            this.move(grassEaterArr, matrix, grassEaterLifeArr);
             this.energy--;
 
         }

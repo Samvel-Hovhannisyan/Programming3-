@@ -30,7 +30,7 @@ module.exports = class Water {
         return Item;
     }
 
-    die(waterArr, matrix) {
+    die(waterArr, matrix, waterLifeArr) {
         waterArr.length = 0;
         var n = matrix.length;
 
@@ -38,6 +38,8 @@ module.exports = class Water {
 
         matrix[4][n - 1] = 6;
         waterArr.push(new Water(n - 1, 4, 6));
+
+        waterLifeArr[1]++;
     }
 
     mul(waterArr, matrix) {

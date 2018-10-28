@@ -7,7 +7,6 @@ function setup() {
     var socket = io.connect();
     socket.on("get matrix", function (mtx) {
         matrix = mtx;
-        // console.log(matrix + "")
         createCanvas(matrix[0].length * side, matrix.length * side);
         noLoop();
 

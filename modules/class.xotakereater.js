@@ -56,11 +56,11 @@ module.exports = class XotakerEater {
             this.y = y;
         }
         if (this.energy < 1) {
-            this.die(xotakerEaterArr, matrix);
+            this.die(xotakerEaterArr, matrix, xotakerEaterLifeArr);
         }
     }
 
-    die(xotakerEaterArr, matrix) {
+    die(xotakerEaterArr, matrix, xotakerEaterLifeArr) {
         this.getNewCoordinates();
         matrix[this.y][this.x] = 0;
 
@@ -69,9 +69,10 @@ module.exports = class XotakerEater {
                 xotakerEaterArr.splice(i, 1);
             }
         }
+        xotakerEaterLifeArr[1]++;
     }
 
-    eat(xotakerEaterArr, grassEaterArr, matrix) {
+    eat(xotakerEaterArr, grassEaterArr, matrix, grassEaterLifeArr, xotakerEaterLifeArr) {
         var fundCords = this.chooseCell(-1, 2, matrix);
         var cord = this.random(fundCords);
 
@@ -85,6 +86,7 @@ module.exports = class XotakerEater {
             for (var i in grassEaterArr) {
                 if (x == grassEaterArr[i].x && y == grassEaterArr[i].y) {
                     grassEaterArr.splice(i, 1);
+                    grassEaterLifeArr[1]++;
                 }
             }
             this.x = x;
@@ -102,7 +104,7 @@ module.exports = class XotakerEater {
             this.move(xotakerEaterArr, matrix);
             this.energy--;
             if (this.energy < 1) {
-                this.die(xotakerEaterArr, matrix);
+                this.die(xotakerEaterArr, matrix, xotakerEaterLifeArr);
             }
         }
     }

@@ -7,7 +7,7 @@ module.exports = class Cool {
         this.index = index;
     }
 
-    random(Arr){
+    random(Arr) {
         var Item = Arr[Math.floor(Math.random() * Arr.length)];
         return Item;
     }
@@ -56,7 +56,7 @@ module.exports = class Cool {
         return found;
     }
 
-    eat(xotakerEaterArr, matrix) {
+    eat(xotakerEaterArr, matrix, xotakerEaterLifeArr) {
         var emptyCellsx = this.chooseCell(3, matrix);
         var a = [];
         for (var i = 0; i < emptyCellsx.length; i++) {
@@ -71,6 +71,7 @@ module.exports = class Cool {
             for (var i in xotakerEaterArr) {
                 if (newX == xotakerEaterArr[i].x && newY == xotakerEaterArr[i].y) {
                     xotakerEaterArr.splice(i, 1);
+                    xotakerEaterLifeArr[1]++;
                     break;
                 }
             }

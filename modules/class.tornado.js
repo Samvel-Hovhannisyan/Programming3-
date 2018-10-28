@@ -61,7 +61,7 @@ module.exports = class Tornado {
         }
     }
 
-    eat(tornadoArr, grassArr, grassEaterArr, xotakerEaterArr, matrix) {
+    eat(tornadoArr, grassArr, grassEaterArr, xotakerEaterArr, matrix, grassLifeArr, grassEaterLifeArr, xotakerEaterLifeArr) {
         var fundCords = this.chooseCell(4, 1, 2, 3, matrix);
         var cord = this.random(fundCords);
 
@@ -73,6 +73,7 @@ module.exports = class Tornado {
                 for (var i in grassArr) {
                     if (x == grassArr[i].x && y == grassArr[i].y) {
                         grassArr.splice(i, 1);
+                        grassLifeArr[1]++;
                     }
                 }
             }
@@ -80,6 +81,7 @@ module.exports = class Tornado {
                 for (var i in grassEaterArr) {
                     if (x == grassEaterArr[i].x && y == grassEaterArr[i].y) {
                         grassEaterArr.splice(i, 1);
+                        grassEaterLifeArr[1]++;
                     }
                 }
             }
@@ -87,6 +89,7 @@ module.exports = class Tornado {
                 for (var i in xotakerEaterArr) {
                     if (x == xotakerEaterArr[i].x && y == xotakerEaterArr[i].y) {
                         xotakerEaterArr.splice(i, 1);
+                        xotakerEaterLifeArr[1]++;
                     }
                 }
             }

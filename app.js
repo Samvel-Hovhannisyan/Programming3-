@@ -74,7 +74,6 @@ var drawTime = 1000 / frameRate;
 
 io.on("connection", function (socket) {
   socket.emit("get matrix", matrix);
-  // console.log(matrix + "")
 
   var Interval = setInterval(function () {
     for (var i in grassArr) {
@@ -99,7 +98,7 @@ io.on("connection", function (socket) {
         break;
       }
     }
-  socket.emit("redraw", matrix)
+    socket.emit("redraw", matrix)
   }, drawTime)
 
 })

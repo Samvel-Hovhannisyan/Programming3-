@@ -13,7 +13,6 @@ module.exports = class Tornado {
             [this.x + 2, this.y]
         ];
     }
-
     chooseCell(character1, character2, character3, character4, matrix) {
         this.getNewCoordinates();
         var found = [];
@@ -103,7 +102,7 @@ module.exports = class Tornado {
             }
         }
         else {
-            this.move(tornadoArr, matrix);
+            this.move(matrix);
         }
     }
 }

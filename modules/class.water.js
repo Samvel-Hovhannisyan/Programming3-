@@ -31,7 +31,7 @@ module.exports = class Water {
     }
 
     die(waterArr, matrix) {
-        waterArr = [];
+        waterArr.length = 0;
         var n = matrix.length;
 
         for (var i in matrix[4]) { matrix[4][i] = 0; }
@@ -41,14 +41,11 @@ module.exports = class Water {
     }
 
     mul(waterArr, matrix) {
-        this.multiply++;
         var newCell = this.random(this.chooseCell(0, 1, 2, 3, matrix));
-        if (this.multiply >= 1 && newCell) {
+        if (newCell) {
             var NewWater = new Water(newCell[0], newCell[1], this.index);
             waterArr.push(NewWater);
             matrix[newCell[1]][newCell[0]] = 6;
-            this.multiply = 0;
         }
-
     }
 }

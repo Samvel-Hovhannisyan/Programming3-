@@ -1,15 +1,43 @@
-var Parent = require("./class.parent.js");
-module.exports = class XotakerEater extends Parent {
+module.exports = class XotakerEater {
     constructor(x, y, index) {
-        super(x, y, index);
+        this.x = x;
+        this.y = y;
+        this.index = index;
+        this.multiply = 0;
         this.energy = 150;
     }
-    chooseCell(character, matrix) {
+    getNewCoordinates() {
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+    }
+    chooseCell(character1, character2, matrix) {
         this.getNewCoordinates();
-        return super.chooseCell(character, matrix);
+        var found = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] == character1 || matrix[y][x] == character2) {
+                    found.push(this.directions[i]);
+                }
+            }
+        }
+        return found;
+    }
+    random(Arr){
+        var Item = Arr[Math.floor(Math.random() * Arr.length)];
+        return Item;
     }
     move(xotakerEaterArr, matrix) {
-        var fundCords = this.chooseCell(0, matrix);
+        var fundCords = this.chooseCell(0, 1, matrix);
         var cord = this.random(fundCords);
 
         if (cord) {
@@ -44,7 +72,7 @@ module.exports = class XotakerEater extends Parent {
     }
 
     eat(xotakerEaterArr, grassEaterArr, matrix) {
-        var fundCords = this.chooseCell(2, matrix);
+        var fundCords = this.chooseCell(-1, 2, matrix);
         var cord = this.random(fundCords);
 
         if (cord) {
@@ -79,7 +107,7 @@ module.exports = class XotakerEater extends Parent {
         }
     }
     mul(xotakerEaterArr, matrix) {
-        var emptyCells = this.chooseCell(1, matrix);
+        var emptyCells = this.chooseCell(0, 1, matrix);
         var newCell = this.random(emptyCells);
         if (newCell) {
             var newX = newCell[0];
